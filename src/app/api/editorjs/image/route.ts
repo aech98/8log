@@ -37,9 +37,3 @@ export async function POST(req: Request) {
     });
   } catch (error) {}
 }
-
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};

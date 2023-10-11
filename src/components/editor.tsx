@@ -46,7 +46,6 @@ const Editor: FC<EditorProps> = ({ title, content, authorId, postId }) => {
     const Code = (await import('@editorjs/code')).default;
     const LinkTool = (await import('@editorjs/link')).default;
     const InlineCode = (await import('@editorjs/inline-code')).default;
-    const ImageTool = (await import('@editorjs/image')).default;
     const Paragraph = (await import('@editorjs/paragraph')).default;
 
     if (!editorJsRef.current) {
@@ -69,29 +68,7 @@ const Editor: FC<EditorProps> = ({ title, content, authorId, postId }) => {
           paragraph: Paragraph,
           linkTool: {
             class: LinkTool,
-            config: {
-              endpoint: '/api/editorjs/link',
-            },
-          },
-          image: {
-            class: ImageTool,
-            config: {
-              uploader: {
-                async uploadByFile(file: File) {
-                  const formData = new FormData();
-                  formData.append('image', file);
-                  const { data } = await axios.post(
-                    '/editorjs/image',
-                    formData
-                  );
-
-                  return {
-                    success: 1,
-                    file: data.image_url,
-                  };
-                },
-              },
-            },
+            config: { endpoint: '/api/editorjs/link' },
           },
         },
       });

@@ -1,6 +1,4 @@
 import { z } from 'zod';
-import cloudinary from 'cloudinary';
-import { cloudinaryConfig } from '@/configs';
 
 const ACCEPTED_IMAGE_TYPES = [
   'image/jpeg',
@@ -27,14 +25,14 @@ export async function POST(req: Request) {
       })
       .parseAsync(formData.get('image'));
 
-    console.log(validatedImage);
+    // console.log(validatedImage);
 
-    const customCloudinary = cloudinary;
-    customCloudinary.v2.config(cloudinaryConfig);
+    // const customCloudinary = cloudinary;
+    // customCloudinary.v2.config(cloudinaryConfig);
 
-    const response = await customCloudinary.v2.uploader.upload(validatedImage);
+    // const response = await customCloudinary.v2.uploader.upload(validatedImage);
 
-    return new Response(JSON.stringify({ image_url: response.secure_url }), {
+    return new Response(JSON.stringify({ image_url: '' }), {
       status: 200,
     });
   } catch (error) {}
